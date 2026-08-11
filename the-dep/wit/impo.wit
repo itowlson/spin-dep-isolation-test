@@ -1,0 +1,10 @@
+package impo:impo@1.0.0;
+
+interface i-love-kv {
+    get-the-kv: async func(k: string) -> option<list<u8>>;
+    set-the-kv: async func(k: string, v: list<u8>);
+}
+
+world w {
+    export i-love-kv;
+}

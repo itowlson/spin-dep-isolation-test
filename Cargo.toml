@@ -1,0 +1,17 @@
+[package]
+name = "dep-isolation-test"
+authors = ["itowlson <ivan.towlson@fermyon.com>"]
+description = ""
+version = "0.1.0"
+rust-version = "1.93"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+anyhow = "1"
+spin-sdk = "6.0.0"
+
+[workspace]
+members = ["the-dep"]

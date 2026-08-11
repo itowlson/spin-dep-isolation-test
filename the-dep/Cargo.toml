@@ -1,0 +1,11 @@
+[package]
+name = "the-dep"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+spin-sdk = { version = "6.0.0",default-features = false, features = ["variables"] }
+wit-bindgen = "0.60.0"
