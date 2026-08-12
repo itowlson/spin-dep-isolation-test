@@ -9,6 +9,34 @@ world root {
 world impo-world0 {
   import impo:impo/i-love-kv@1.0.0;
 }
+package spin:sqlite@3.1.0 {
+  interface sqlite {
+    resource connection {
+      open-async: static async func(database: string) -> result<connection, error>;
+      execute-async: async func(statement: string, parameters: list<value>) -> result<tuple<list<string>, stream<row-result>, future<result<_, error>>>, error>;
+    }
+
+    variant error {
+      no-such-database,
+      access-denied,
+      invalid-connection,
+      database-full,
+      io(string),
+    }
+
+    variant value {
+      integer(s64),
+      real(f64),
+      text(string),
+      blob(list<u8>),
+      null,
+    }
+
+    record row-result {
+      values: list<value>,
+    }
+  }
+}
 package spin:variables@3.0.0 {
   interface variables {
     variant error {

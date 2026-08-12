@@ -23,4 +23,4 @@ variables = {"spork" = "main comp haz {{ fie }}"} # for now
 command = "cargo build --target wasm32-wasip2 --release"
 watch = ["src/**/*.rs", "Cargo.toml"]
 [component.dep-isolation-test.dependencies]
-"impo:impo/i-love-kv@1.0.0" = { path = "./target/wasm32-wasip2/release/the_dep.wasm", capabilities = { variables = {"fie" = "dep haz {{ fie }}" } } }
+"impo:impo/i-love-kv@1.0.0" = { path = "./target/wasm32-wasip2/release/the_dep.wasm", capabilities = { sqlite_databases = ["default"], variables = {"fie" = "dep haz {{ fie }}" } } }
