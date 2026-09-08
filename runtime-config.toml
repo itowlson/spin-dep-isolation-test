@@ -1,0 +1,3 @@
+[key_value_store.fie]
+type = "spin"
+path = ".spin/fie.db"

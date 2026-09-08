@@ -5,7 +5,7 @@ spin_sdk::dependencies!();
 
 #[http_service]
 async fn handle_dep_isolation_test(_req: Request) -> anyhow::Result<impl IntoResponse> {
-    // impo::impo::i_love_kv::set_the_kv("Hello".to_string(), "world".as_bytes().to_vec()).await;
+    impo::impo::i_love_kv::set_the_kv("fie".to_string(), "I'M A KV".as_bytes().to_vec()).await;
     let glarg = impo::impo::i_love_kv::get_the_kv("fie".to_string()).await.unwrap();
     let glarg = String::from_utf8_lossy(&glarg).to_string();
     let moar = spin_sdk::variables::get("spork").await.unwrap();

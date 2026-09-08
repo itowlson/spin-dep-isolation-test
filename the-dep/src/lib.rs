@@ -26,15 +26,15 @@ impl exports::impo::impo::i_love_kv::Guest for KVLover {
 
         let res_str = format!("{resset:?}");
 
-        Some((format!("vtest = '{vtest}' and resset = '{res_str}'")).into())
+        let store = spin_sdk::key_value::Store::open("fie").await.unwrap();
+        let kv = store.get(&k).await.unwrap().map(|v| String::from_utf8_lossy(&v).to_string()).unwrap_or("<unk>".to_string());
 
-        // let store = spin_sdk::key_value::Store::open("fie").await.unwrap();
-        // store.get(&k).await.unwrap()
+        Some((format!("vtest = '{vtest}' and resset = '{res_str}' and kv = '{kv}'")).into())
     }
 
-    async fn set_the_kv(_k: _rt::String,_v: _rt::Vec::<u8>,) -> () {
-        // let store = spin_sdk::key_value::Store::open("fie").await.unwrap();
-        // store.set(&k, &v).await.unwrap()
+    async fn set_the_kv(k: _rt::String, v: _rt::Vec::<u8>,) -> () {
+        let store = spin_sdk::key_value::Store::open("fie").await.expect("where is the fie");
+        store.set(&k, &v).await.unwrap()
     }
 }
 
