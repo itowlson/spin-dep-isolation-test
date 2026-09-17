@@ -29,7 +29,13 @@ impl exports::impo::impo::i_love_kv::Guest for KVLover {
         let store = spin_sdk::key_value::Store::open("fie").await.unwrap();
         let kv = store.get(&k).await.unwrap().map(|v| String::from_utf8_lossy(&v).to_string()).unwrap_or("<unk>".to_string());
 
-        Some((format!("vtest = '{vtest}' and resset = '{res_str}' and kv = '{kv}'")).into())
+        let fr = std::fs::read_to_string("/arse.txt");
+        let fr_text = match fr {
+            Ok(s) => format!("file content = '{s}'"),
+            Err(e) => format!("file read ERROR!!! {e}"),
+        };
+
+        Some((format!("vtest = '{vtest}' and resset = '{res_str}' and kv = '{kv}' and file = '{fr_text}'")).into())
     }
 
     async fn set_the_kv(k: _rt::String, v: _rt::Vec::<u8>,) -> () {
