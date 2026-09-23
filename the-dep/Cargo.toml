@@ -8,4 +8,4 @@ crate-type = ["cdylib"]
 
 [dependencies]
 spin-sdk = { version = "7.0.0" }
-wit-bindgen = "0.60.0"
+wit-bindgen = "0.57.1"

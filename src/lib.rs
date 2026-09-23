@@ -24,14 +24,13 @@ async fn handle_dep_isolation_test(_req: Request) -> anyhow::Result<impl IntoRes
     let dep_output = impo::impo::i_love_kv::get_the_kv("fie".to_string()).await.unwrap();
     let dep_output = String::from_utf8_lossy(&dep_output).to_string();
 
-    // let main_comp_var = spin_sdk::variables::get("spork").await.unwrap();
+    let main_comp_var = spin_sdk::variables::get("spork").await.unwrap();
 
-    // let dep_output_forbidden = impo::impo::i_love_kv::get_the_kv("spork".to_string()).await.unwrap();
-    // let dep_output_forbidden = String::from_utf8_lossy(&dep_output_forbidden).to_string();
-    // let main_comp_var_forbidden = spin_sdk::variables::get("fie").await.err();
+    let dep_output_forbidden = impo::impo::i_love_kv::get_the_kv("spork".to_string()).await.unwrap();
+    let dep_output_forbidden = String::from_utf8_lossy(&dep_output_forbidden).to_string();
+    let main_comp_var_forbidden = spin_sdk::variables::get("fie").await.err();
 
-    // let resp = format!("MAIN: {main_comp_var}\nDEP: {dep_output}\nMAIN TRYING TO GET DEP: {main_comp_var_forbidden:?}\nDEP TRYING TO GET MAIN: {dep_output_forbidden}\n");
-    let resp = format!("DEP: {dep_output}\n");
+    let resp = format!("MAIN: {main_comp_var}\nDEP: {dep_output}\nMAIN TRYING TO GET DEP: {main_comp_var_forbidden:?}\nDEP TRYING TO GET MAIN: {dep_output_forbidden}\n");
     
     Ok(Response::builder()
         .status(200)
